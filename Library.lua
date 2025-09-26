@@ -277,7 +277,7 @@
 
 				for _,obj in Object do 
 					if library:hovering(obj) then 
-						Pass = true
+						Pass = false
 						return Pass
 					end 
 				end 
