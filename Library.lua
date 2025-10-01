@@ -113,6 +113,8 @@
 			["glow"] = hex("#E6D6FF"), -- white purple
 		},
 
+		},
+
 		utility = {
 			["outline"] = {
 				["BackgroundColor3"] = {}, 	
@@ -1526,7 +1528,7 @@
 
 			-- main window
 				local main_window = library:panel({
-					name = properties and properties.name or "Stealth | ", 
+					name = properties and properties.name or "Atlanta | ", 
 					size = dim2(0, 604, 0, 628),
 					position = dim2(0, (camera.ViewportSize.X / 2) - 302 - 96, 0, (camera.ViewportSize.Y / 2) - 421 - 12),
 					image = "rbxassetid://98823308062942",
@@ -1538,7 +1540,7 @@
 					Parent = items.holder,
 					Name = " ",
 					BackgroundTransparency = 1,
-					Size = dim2(1, 0, 0, 15),
+					Size = dim2(1, 0, 0, 22),
 					BorderColor3 = rgb(0, 0, 0),
 					ZIndex = 5,
 					BorderSizePixel = 0,
@@ -1631,11 +1633,11 @@
 					image = "rbxassetid://115194686863276",
 				})
 
-				local watermark = library:watermark({default = os.date('Home')})  
+				local watermark = library:watermark({default = os.date('Atlanta |  - %b %d %Y - %H:%M:%S')})  
 
 				task.spawn(function()
 					while task.wait(1) do 
-						watermark.change_text(os.date('Stealth - Beta - %b %d %Y - %H:%M:%S'))
+						watermark.change_text(os.date('Atlanta - Beta - %b %d %Y - %H:%M:%S'))
 					end 
 				end) 
 
@@ -1685,14 +1687,14 @@
 				:colorpicker({name = "Glow", color = themes.preset.glow, callback = function(color, alpha)
 					library:update_theme("glow", color)
 				end, flag = "Glow"})
-				section:slider({name = "Blur Size", flag = "Blur Size", min = 0, max = 56, default = 0, interval = 1, callback = function(int)
+				section:slider({name = "Blur Size", flag = "Blur Size", min = 0, max = 56, default = 15, interval = 1, callback = function(int)
 					if window.opened then 
 						blur.Size = int
 					end
 				end})
 				local section = column:section({name = "Other"})
 				section:label({name = "UI Bind"})
-				:keybind({callback = window.set_menu_visibility, key = Enum.KeyCode.RightShift})
+				:keybind({callback = window.set_menu_visibility, key = Enum.KeyCode.Insert})
 				section:toggle({name = "Keybind List", flag = "keybind_list", callback = function(bool)
 					library.keybind_list_frame.Visible = bool
 				end})
@@ -1785,7 +1787,16 @@
 
 						blur:Destroy()
 					end})
-			--
+			-- 
+					
+			-- esp preview
+				local holder = library:panel({
+					name = "ESP Preview", 
+					anchor_point = vec2(0, 0),
+					size = dim2(0, 300, 0, 325),
+					position = dim2(0, style.items.main_holder.AbsolutePosition.X, 0, style.items.main_holder.AbsolutePosition.Y + style.items.main_holder.AbsoluteSize.Y + 2),
+					image = "rbxassetid://77684377836328",
+				})  
 				
 				local items = holder.items
 				
